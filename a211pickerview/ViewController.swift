@@ -20,7 +20,9 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
         pickerView.dataSource = self
         pickerView.delegate = self
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(segue.identifier)
+    }
     //MARK: PickerView DataSource
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
@@ -61,6 +63,7 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
         if pickerView.selectedRow(inComponent: 0) != 0
             && pickerView.selectedRow(inComponent: 1) != 0{
             print("計算：\(astrological[pickerView.selectedRow(inComponent:0)]),\(bloodType[pickerView.selectedRow(inComponent:1)])")
+            self.performSegue(withIdentifier: "goToPage2", sender: self)
         }else{
             print("not yet")
         }
